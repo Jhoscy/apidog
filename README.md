@@ -106,9 +106,9 @@ You can easily extend this project by adding more models and endpoints:
 
 ## 📷 Screenshots
 
-| Home Screen | Loading State | Response |
-|-------------|----------------|----------|
-| ![home](docs/home.png) | ![loading](docs/loading.png) | ![result](docs/result.png) |
+| Home Screen | Detail |
+|-------------|----------------|
+| ![home](docs/home.png) | ![detail](docs/detail.png) |
 
 ---
 
@@ -129,4 +129,4 @@ Have an idea or a bug fix? Feel free to open a pull request! ❤️
 
 ## 📄 License
 
-MIT License © 2025 Gionata Stante / MemmCode
+MIT License © 2025 Gionata Stante / Open Reply
