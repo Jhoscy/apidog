@@ -7,7 +7,7 @@ part of 'category.dart';
 // **************************************************************************
 
 Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
-      id: Category._stringToInt(json['id']),
+      id: json['id'] as String?,
       name: json['name'] as String?,
     );
 

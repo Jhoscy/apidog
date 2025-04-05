@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 
 class ApiProvider extends ChangeNotifier {
   bool isLoading = false;
-  String responseData = '';
+
+  List<Pet> petList = [];
+  Pet? pet;
   TextEditingController endpointController = TextEditingController(text: 'https://apidog.com/pet');
   final FetchApiData<Pet> fetchApiData;
 
@@ -12,14 +14,13 @@ class ApiProvider extends ChangeNotifier {
 
   Future<void> fetchData() async {
     isLoading = true;
-    responseData = '';
     notifyListeners();
 
     try {
-      final result = await fetchApiData(endpointController.text);
-      responseData = 'Pet name: ${result.data.name}, ID: ${result.data.id}';
+      final result = await fetchApiData("http://127.0.0.1:3658/m1/869737-850807-default/pet/1");
+      pet = result.data;
     } catch (e) {
-      responseData = 'Error: ${e.toString()}';
+      debugPrint('Debug - Error: ${e.toString()}');
     }
 
     isLoading = false;
@@ -28,14 +29,14 @@ class ApiProvider extends ChangeNotifier {
 
   Future<void> fetchPetList() async {
     isLoading = true;
-    responseData = '';
     notifyListeners();
 
     try {
-      final result = await fetchApiData.fetchList(endpointController.text);
-      responseData = result.data.map((pet) => '• ${pet.name} (ID: ${pet.id})').join('\n');
+      final result = await fetchApiData.fetchList("http://127.0.0.1:3658/m1/869737-850807-default/pet/findByStatus?status=available");
+      petList = result.data;
+      debugPrint('Debug - Pet list: ${petList.length}');
     } catch (e) {
-      responseData = 'Error: ${e.toString()}';
+      debugPrint('Debug - Error: ${e.toString()}');
     }
 
     isLoading = false;

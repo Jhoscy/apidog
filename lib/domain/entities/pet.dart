@@ -14,7 +14,7 @@ class Pet {
 
   ///Pet ID
   @JsonKey(name: "id")
-  int id;
+  String id;
 
   ///name
   @JsonKey(name: "name")

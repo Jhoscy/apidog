@@ -8,7 +8,7 @@ part of 'pet.dart';
 
 Pet _$PetFromJson(Map<String, dynamic> json) => Pet(
       category: Category.fromJson(json['category'] as Map<String, dynamic>),
-      id: (json['id'] as num).toInt(),
+      id: json['id'] as String,
       name: json['name'] as String,
       photoUrls:
           (json['photoUrls'] as List<dynamic>).map((e) => e as String).toList(),

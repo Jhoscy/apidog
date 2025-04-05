@@ -7,8 +7,8 @@ part 'tag.g.dart';
 class Tag {
     
     ///Tag ID
-    @JsonKey(name: "id", fromJson: _stringToInt)
-    int? id;
+    @JsonKey(name: "id")
+    String? id;
     
     ///Tag Name
     @JsonKey(name: "name")
