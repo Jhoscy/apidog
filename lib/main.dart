@@ -5,6 +5,7 @@ import 'package:apidog/domain/usecases/fetch_api_data.dart';
 import 'package:apidog/presentation/providers/api_provider.dart';
 import 'package:apidog/presentation/screens/api_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 
 final theme = ThemeData(
@@ -15,7 +16,14 @@ final theme = ThemeData(
   ),
 );
 
-void main() {
+Future<void> main() async {
+  try {
+    const env = String.fromEnvironment('ENV', defaultValue: 'dev');
+    print('Debug - Env: $env');
+    await dotenv.load(fileName: './environments/.env.$env');
+  } catch (e) {
+    debugPrint('Debug - Error loading env: ${e.toString()}');
+  }
   // Initialize the dependencies
   final petService = PetService();
   final apiRepository = PetRepositoryImpl(petService);

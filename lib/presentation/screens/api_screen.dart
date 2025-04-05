@@ -2,8 +2,22 @@ import 'package:apidog/presentation/providers/api_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ApiScreen extends StatelessWidget {
+class ApiScreen extends StatefulWidget {
   const ApiScreen({super.key});
+
+  @override
+  State<ApiScreen> createState() => _ApiScreenState();
+}
+
+class _ApiScreenState extends State<ApiScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final provider = Provider.of<ApiProvider>(context, listen: false);
+      provider.fetchPetList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
