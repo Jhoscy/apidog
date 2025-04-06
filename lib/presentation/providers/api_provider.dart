@@ -34,7 +34,6 @@ class ApiProvider extends ChangeNotifier {
     try {
       final result = await fetchApiData.fetchList('$baseUrl/pet/findByStatus?status=available');
       petList = result.data;
-      debugPrint('Debug - Pet list: ${petList.length}');
     } catch (e) {
       debugPrint('Debug - Error: ${e.toString()}');
     }

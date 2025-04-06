@@ -2,16 +2,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug",
+            "name": "Local",
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
             "args": [
                 "--dart-define=ENV=local"
             ]
-            // "args": [
-            //     "--dart-define-from-file=dart_defines/uat.env"
-            // ]
         },
     ]
 }

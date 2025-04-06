@@ -1,17 +1,32 @@
 import 'package:apidog/domain/entities/pet.dart';
+import 'package:apidog/presentation/widgets/carousel.dart';
+import 'package:apidog/presentation/widgets/carousel_indicators.dart';
 import 'package:apidog/presentation/widgets/layout.dart';
 import 'package:flutter/material.dart';
 
-class PetDetail extends StatelessWidget {
+class PetDetail extends StatefulWidget {
   const PetDetail({super.key, required this.pet});
 
   final Pet pet;
 
   @override
+  State<PetDetail> createState() => _PetDetailState();
+}
+
+class _PetDetailState extends State<PetDetail> {
+  int _currentImageIndex = 0;
+
+  void _onPageChanged(int index) {
+    setState(() {
+      _currentImageIndex = index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Layout(
       appBar: AppBar(
-        title: Text(pet.name),
+        title: Text(widget.pet.name),
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
@@ -19,24 +34,24 @@ class PetDetail extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
         children: [
           // Image of the Pet
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                pet.photoUrls[0],
-                width: double.infinity,
-                height: 250,
-                fit: BoxFit.cover,
-              ),
+          Container(
+            height: 250,
+            padding: const EdgeInsets.all(8.0),
+            child: Carousel(
+              images: widget.pet.photoUrls,
+              onPageChanged: _onPageChanged,
             ),
+          ),
+          CarouselIndicators(
+            imagesLength: widget.pet.photoUrls.length,
+            currentIndex: _currentImageIndex,
           ),
 
           // Pet's Name
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
-              pet.name,
+              widget.pet.name,
               style: Theme.of(context)
                   .textTheme
                   .headlineMedium
@@ -49,24 +64,26 @@ class PetDetail extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
             child: Text(
-              'Status: ${pet.status.name}',
+              'Status: ${widget.pet.status.name}',
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
 
           // Pet's Tags
-          if (pet.tags.isNotEmpty)
+          if (widget.pet.tags.isNotEmpty)
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               child: Wrap(
                 spacing: 8.0, // Space between tags
                 runSpacing: 4.0, // Space between lines of tags
-                children: pet.tags.map((tag) {
+                children: widget.pet.tags.map((tag) {
                   return Chip(
                     label: Text(tag.name ?? ''),
-                    backgroundColor:
-                        Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+                    backgroundColor: Theme.of(context)
+                        .colorScheme
+                        .primary
+                        .withValues(alpha: 0.1),
                   );
                 }).toList(),
               ),
@@ -75,7 +92,7 @@ class PetDetail extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
             child: Text(
-              pet.category.name!,
+              widget.pet.category.name!,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),

@@ -11,7 +11,6 @@ class PetService {
     if (response.statusCode == 200) {
       final decoded = jsonDecode(response.body) as Map<String, dynamic>;
       debugPrint('Debug - Response body: ${response.body}');
-      debugPrint('Debug - Decoded data: ${decoded['data']}');
       return ApiResponse<Pet>(
         data: Pet.fromJson(decoded['data']),
         statusCode: decoded['code'],
@@ -26,7 +25,6 @@ class PetService {
     if (response.statusCode == 200) {
       final decoded = jsonDecode(response.body) as Map<String, dynamic>;
       debugPrint('Debug - Response body: ${response.body}');
-      debugPrint('Debug - Decoded data: ${decoded['data']}');
       
       final data = decoded['data'] as List<dynamic>;
       

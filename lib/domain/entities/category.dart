@@ -18,13 +18,6 @@ class Category {
     this.name,
   });
 
-  static int? _stringToInt(dynamic value) {
-    if (value == null) return null;
-    if (value is int) return value;
-    if (value is String) return int.tryParse(value);
-    return null;
-  }
-
   factory Category.fromJson(Map<String, dynamic> json) =>
       _$CategoryFromJson(json);
 

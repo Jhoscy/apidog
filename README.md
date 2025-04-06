@@ -10,7 +10,6 @@
 
 - ✅ Fetch a single `Pet`
 - ✅ Fetch a list of `Pet`s
-- ✅ Input field to dynamically change the API endpoint
 - ✅ Environment management via `.env` files
 - ✅ Proper separation of concerns through **Clean Architecture**
 - ✅ Centralized error handling using `Failure` and `Exception` classes
