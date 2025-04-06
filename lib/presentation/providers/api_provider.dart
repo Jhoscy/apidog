@@ -13,11 +13,12 @@ class ApiProvider extends ChangeNotifier {
 
   ApiProvider({required this.fetchApiData});
 
-  Future<void> fetchData() async {
+  Future<void> fetchData(String id) async {
     isLoading = true;
+    pet = null;
     notifyListeners();
     try {
-      final result = await fetchApiData('$baseUrl/pet/1');
+      final result = await fetchApiData('$baseUrl/pet/$id');
       pet = result.data;
     } catch (e) {
       debugPrint('Debug - Error: ${e.toString()}');
