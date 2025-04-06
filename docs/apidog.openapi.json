@@ -1,0 +1,574 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Tech Talk",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "pet"
+    }
+  ],
+  "paths": {
+    "/pet/{petId}": {
+      "get": {
+        "summary": "Find pet by ID",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "pet"
+        ],
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "pet ID",
+            "required": true,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 0,
+                      "description": "status code"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Pet",
+                      "description": "pet details"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "name": "Hello Kitty",
+                    "photoUrls": [
+                      "http://dummyimage.com/400x400"
+                    ],
+                    "id": 3,
+                    "category": {
+                      "id": 71,
+                      "name": "Cat"
+                    },
+                    "tags": [
+                      {
+                        "id": 22,
+                        "name": "Cat"
+                      }
+                    ],
+                    "status": "sold"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "Deletes a pet",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "pet"
+        ],
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "Pet id to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 0
+                    }
+                  },
+                  "required": [
+                    "code"
+                  ]
+                },
+                "example": {
+                  "code": 0
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/pet": {
+      "post": {
+        "summary": "Add a new pet to the store",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "pet"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "description": "Pet Name",
+                    "example": "Hello Kitty",
+                    "type": "string"
+                  },
+                  "status": {
+                    "description": "Pet Sales Status",
+                    "example": "sold",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "status"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 0
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Pet",
+                      "description": "pet details"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "name": "Hello Kitty",
+                    "photoUrls": [
+                      "http://dummyimage.com/400x400"
+                    ],
+                    "id": 3,
+                    "category": {
+                      "id": 71,
+                      "name": "Cat"
+                    },
+                    "tags": [
+                      {
+                        "id": 22,
+                        "name": "Cat"
+                      }
+                    ],
+                    "status": "sold"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "put": {
+        "summary": "Update an existing pet",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "pet"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Pet",
+                      "description": "pet details"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "code": 0,
+                  "data": {
+                    "name": "Hello Kitty",
+                    "photoUrls": [
+                      "http://dummyimage.com/400x400"
+                    ],
+                    "id": 3,
+                    "category": {
+                      "id": 71,
+                      "name": "Cat"
+                    },
+                    "tags": [
+                      {
+                        "id": 22,
+                        "name": "Cat"
+                      }
+                    ],
+                    "status": "sold"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          },
+          "405": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/pet/findByStatus": {
+      "get": {
+        "summary": "Finds Pets by status",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "pet"
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status values that need to be considered for filter",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Pet",
+                        "description": "pet details"
+                      }
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "code": 0,
+                  "data": [
+                    {
+                      "id": "5f238bf0-2160-47f2-92c1-e6b75a374b49",
+                      "category": {
+                        "id": "f759c5af-a7ed-4b34-944a-1e96a5f50b39",
+                        "name": "Karla Schamberger II"
+                      },
+                      "name": "Ralph Kemmer",
+                      "photoUrls": [
+                        "https://loremflickr.com/400/400?lock=6448720509738041",
+                        "https://loremflickr.com/400/400?lock=6168279931117736",
+                        "https://loremflickr.com/400/400?lock=1286470807388098"
+                      ],
+                      "tags": [
+                        {
+                          "id": "f8daa804-6edf-40db-83ad-618ef54a058f",
+                          "name": "Dr. Marcia Pfannerstill"
+                        },
+                        {
+                          "id": "0e8d93f8-90fd-4a96-ad5f-f6acbe728956",
+                          "name": "Lorraine Waters"
+                        }
+                      ],
+                      "status": "sold"
+                    },
+                    {
+                      "id": "9c994420-040f-4202-8e17-4a4e37e328e2",
+                      "category": {
+                        "id": "d04e922e-8a02-4d00-99b5-61e5fd7ded25",
+                        "name": "Patsy Stehr"
+                      },
+                      "name": "Brandon Gutkowski",
+                      "photoUrls": [
+                        "https://loremflickr.com/400/400?lock=2500218156461899"
+                      ],
+                      "tags": [
+                        {
+                          "id": "3601c666-22c1-4b4d-9490-a86b57cb16c6",
+                          "name": "Lynne Howell"
+                        },
+                        {
+                          "id": "32623ce2-e302-4a28-849a-b0a32127b0fb",
+                          "name": "Angelina Terry"
+                        },
+                        {
+                          "id": "134477ea-f415-464e-95c6-f1edb855a024",
+                          "name": "Armando Roberts"
+                        }
+                      ],
+                      "status": "sold"
+                    }
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "code"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Pet": {
+        "required": [
+          "name",
+          "photoUrls",
+          "id",
+          "category",
+          "tags",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Pet ID"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category",
+            "description": "group"
+          },
+          "name": {
+            "type": "string",
+            "description": "name",
+            "examples": [
+              "doggie"
+            ]
+          },
+          "photoUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "image URL"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Tag"
+            },
+            "description": "tag"
+          },
+          "status": {
+            "type": "string",
+            "description": "Pet Sales Status",
+            "enum": [
+              "available",
+              "pending",
+              "sold"
+            ]
+          }
+        }
+      },
+      "Tag": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Tag ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Tag Name"
+          }
+        }
+      },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Category ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Category Name"
+          }
+        }
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [],
+  "security": []
+}

@@ -1,4 +1,4 @@
-import 'package:apidog/presentation/providers/api_provider.dart';
+import 'package:apidog/presentation/providers/pet_provider.dart';
 import 'package:apidog/presentation/widgets/pet_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

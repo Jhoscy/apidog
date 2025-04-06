@@ -1,8 +1,8 @@
-import 'package:apidog/data/datasource/api_service.dart';
-import 'package:apidog/data/repositories/api_repository_impl.dart';
+import 'package:apidog/data/datasource/pet_service.dart';
+import 'package:apidog/data/repositories/pet_repository_impl.dart';
 import 'package:apidog/domain/entities/pet.dart';
 import 'package:apidog/domain/usecases/fetch_api_data.dart';
-import 'package:apidog/presentation/providers/api_provider.dart';
+import 'package:apidog/presentation/providers/pet_provider.dart';
 import 'package:apidog/presentation/screens/pet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';

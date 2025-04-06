@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:apidog/domain/entities/pet.dart';
-import 'package:apidog/presentation/providers/api_provider.dart';
-import 'package:apidog/presentation/screens/pet_detail.dart';
+import 'package:apidog/presentation/providers/pet_provider.dart';
+import 'package:apidog/presentation/screens/pet_detail_screen.dart';
 import 'package:apidog/presentation/screens/pet_screen.dart';
 import 'package:apidog/presentation/widgets/alert_dialog.dart';
 import 'package:clay_containers/constants.dart';

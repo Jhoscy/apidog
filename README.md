@@ -116,7 +116,8 @@ You can easily extend this project by adding more models and endpoints:
 - [`http`](https://pub.dev/packages/http) – for HTTP requests
 - [`provider`](https://pub.dev/packages/provider) – for state management
 - [`flutter_dotenv`](https://pub.dev/packages/flutter_dotenv) – for environment variable handling
-- [`json_annotation`](https://pub.dev/packages/json_annotation) – for JSON serialization
+- [`json_annotation`](https://pub.dev/packages/json_annotation) – for JSON annotation
+- [`json_serializable`](https://pub.dev/packages/json_serializable) – for JSON serialization
 
 ---
 

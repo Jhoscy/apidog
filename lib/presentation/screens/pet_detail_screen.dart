@@ -1,5 +1,5 @@
 import 'package:apidog/domain/entities/pet.dart';
-import 'package:apidog/presentation/providers/api_provider.dart';
+import 'package:apidog/presentation/providers/pet_provider.dart';
 import 'package:apidog/presentation/widgets/carousel.dart';
 import 'package:apidog/presentation/widgets/carousel_indicators.dart';
 import 'package:apidog/presentation/widgets/layout.dart';

@@ -1,5 +1,5 @@
 import 'package:apidog/core/error/exceptions.dart';
-import 'package:apidog/data/datasource/api_service.dart';
+import 'package:apidog/data/datasource/pet_service.dart';
 import 'package:apidog/data/models/api_response.dart';
 import 'package:apidog/domain/entities/pet.dart';
 import 'package:apidog/domain/repositories/api_repository.dart';
