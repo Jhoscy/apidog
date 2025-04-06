@@ -81,35 +81,62 @@ final apiUrl = dotenv.env['API_URL']!;
 
 If you want to **mock API responses using local static JSON files**, such as:
 
-- `assets/mock/pet_response.json` → for a single pet detail  
+- `assets/mock/pet_response.json` → for a single pet detail
 - `assets/mock/pet_list_response.json` → for the list of pets
 
 you can toggle this behavior using a `JSON_DATA` variable in your `.env` files.
 
-#### Example:
-
-```env
-# .env.local, .env.dev, or .env.prod
-JSON_DATA=true
-
-> ℹ️ **Behavior based on `JSON_DATA` value**  
+> ℹ️ **Behavior based on `JSON_DATA` value**
 >
-> - When `JSON_DATA=true`, the app will **load data from local static JSON files** instead of making real API calls.  
+> - When `JSON_DATA=true`, the app will **load data from local static JSON files** instead of making real API calls.
 > - When `JSON_DATA=false`, the app will **use the live API** defined in the `API_URL` variable.
 
----
+### 5. 🔁 Standalone Detail Fetching via `standalone` Flag
 
+In the `pet_item.dart` file, each `PetItem` can be configured with a `standalone` boolean flag:
+
+- When `standalone = true`, the **Pet Detail page will fetch data directly from ApiDog** using the pet ID.
+- When `standalone = false`, the **Pet Detail page will receive the full `Pet` object via props**, and no extra fetch is performed.
+
+> ✅ This allows you to decide if the pet should be fetched or passed via widget prop. 
+
+#### Example:
+
+````env
+# .env.local, .env.dev, or .env.prod
+JSON_DATA=false
+API_URL=http://127.0.0.1:3658/<apidog_path>
+---
 ## 🧪 How to Run
 
 ### ✅ Start the app
 
 1. Make sure your `.env` files are created inside the `environment/` folder
-2. Run the app:
+2. Make sure to have API_URL variable from apidog 
+3. Make sure to have JSON_DATA variable setted to false/true
+4. Run the app:
 
 ```bash
 flutter pub get
 flutter run
-```
+
+or for vs_code like, launch.json
+
+{
+    "version": "1.0.0",
+    "configurations": [
+        {
+            "name": "Local",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define=ENV=local"
+            ]
+        },
+    ]
+}
+````
 
 ---
 
@@ -125,8 +152,8 @@ You can easily extend this project by adding more models and endpoints:
 
 ## 📷 Screenshots
 
-| Home Screen | Detail |
-|-------------|----------------|
+| Home Screen            | Detail                     |
+| ---------------------- | -------------------------- |
 | ![home](docs/home.png) | ![detail](docs/detail.png) |
 
 ---
