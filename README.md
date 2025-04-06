@@ -77,6 +77,26 @@ final apiUrl = dotenv.env['API_URL']!;
 
 > 💡 You can change which `.env` file to load based on the environment or flavor you want to run.
 
+### 4. 🗂 Use Static JSON for Local Testing (Optional)
+
+If you want to **mock API responses using local static JSON files**, such as:
+
+- `assets/mock/pet_response.json` → for a single pet detail  
+- `assets/mock/pet_list_response.json` → for the list of pets
+
+you can toggle this behavior using a `JSON_DATA` variable in your `.env` files.
+
+#### Example:
+
+```env
+# .env.local, .env.dev, or .env.prod
+JSON_DATA=true
+
+> ℹ️ **Behavior based on `JSON_DATA` value**  
+>
+> - When `JSON_DATA=true`, the app will **load data from local static JSON files** instead of making real API calls.  
+> - When `JSON_DATA=false`, the app will **use the live API** defined in the `API_URL` variable.
+
 ---
 
 ## 🧪 How to Run

@@ -23,7 +23,7 @@ class ApiProvider extends ChangeNotifier {
     try {
       if (jsonData == 'true') {
         // Read from JSON file
-        final String response = await rootBundle.loadString('lib/data/mock/pet.json');
+        final String response = await rootBundle.loadString('lib/data/mock/pet_response.json');
         final decoded = jsonDecode(response) as Map<String, dynamic>;
         pet = Pet.fromJson(decoded['data']);
         onSuccess?.call(pet);

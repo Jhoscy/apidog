@@ -71,7 +71,7 @@ flutter:
     - environments/.env.local
     - environments/.env.dev
     - environments/.env.prod
-    - lib/data/mock/pet.json
+    - lib/data/mock/pet_response.json
     - lib/data/mock/pets_list_response.json
   #   - images/a_dot_ham.jpeg
 
