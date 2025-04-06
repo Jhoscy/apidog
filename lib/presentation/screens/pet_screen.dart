@@ -4,6 +4,8 @@ import 'package:apidog/presentation/widgets/pet_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+final GlobalKey<ScaffoldState> petScreenScaffoldKey = GlobalKey<ScaffoldState>();
+
 class PetScreen extends StatefulWidget {
   const PetScreen({super.key});
 
@@ -26,6 +28,7 @@ class _ApiScreenState extends State<PetScreen> {
     final provider = Provider.of<ApiProvider>(context);
 
     return Layout(
+      scaffoldKey: petScreenScaffoldKey,
       appBar: AppBar(
         title: const Text('ApiDog Demo'),
         elevation: 0,

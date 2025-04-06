@@ -6,6 +6,8 @@ import 'package:apidog/presentation/widgets/layout.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+final GlobalKey<ScaffoldState> petDetailScaffoldKey = GlobalKey<ScaffoldState>();
+
 class PetDetail extends StatefulWidget {
   const PetDetail({super.key, required this.pet, required this.standalone});
 
@@ -28,6 +30,7 @@ class _PetDetailState extends State<PetDetail> {
   Widget build(BuildContext context) {
     final provider = Provider.of<ApiProvider>(context);
     return Layout(
+      scaffoldKey: petDetailScaffoldKey,
       appBar: AppBar(
         title: Text(widget.pet.name),
         elevation: 0,

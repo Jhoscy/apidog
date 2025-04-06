@@ -1,11 +1,13 @@
-class ServerException implements Exception {}
-
 // lib/core/error/failures.dart
-abstract class Failure {
-  final String message;
-  Failure(this.message);
+abstract class Failure implements Exception {
+  String? message;
+  Failure([this.message]);  // Make the message optional by using square brackets
 }
 
-class ServerFailure extends Failure {
-  ServerFailure(super.message);
+class ServerException extends Failure {
+  ServerException([super.message]);
+  @override
+  String toString() {
+    return 'ServerException: $message';
+  }
 }

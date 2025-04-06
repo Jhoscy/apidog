@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class Layout extends StatelessWidget {
-  const Layout({super.key, required this.appBar, required this.body});
+  Layout({super.key, required this.appBar, required this.body, required this.scaffoldKey});
 
   final AppBar appBar;
   final Widget body;
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       extendBodyBehindAppBar: true,
       appBar: appBar,
       body: Container(

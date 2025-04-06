@@ -12,8 +12,8 @@ class PetRepositoryImpl implements ApiRepository<Pet> {
   Future<ApiResponse<Pet>> fetchData(String url) async {
     try {
       return await petService.fetchData(url);
-    } on ServerException {
-      throw ServerFailure('Failed to fetch pet data');
+    } on ServerException catch (e) {
+      throw ServerException(e.message);
     }
   }
 
@@ -21,8 +21,8 @@ class PetRepositoryImpl implements ApiRepository<Pet> {
   Future<ApiResponse<List<Pet>>> fetchList(String url) async {
     try {
       return await petService.fetchList(url);
-    } on ServerException {
-      throw ServerFailure('Failed to fetch pet list');
+    } on ServerException catch (e) {
+      throw ServerException(e.message);
     }
   }
 }

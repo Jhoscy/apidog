@@ -16,7 +16,7 @@ class PetService {
         statusCode: decoded['code'],
       );
     } else {
-      throw ServerException();
+      throw ServerException('Error ${response.statusCode}');
     }
   }
 
@@ -33,7 +33,7 @@ class PetService {
         statusCode: decoded['code'],
       );
     } else {
-      throw ServerException();
+       throw ServerException('Error ${response.statusCode}');
     }
   }
 }

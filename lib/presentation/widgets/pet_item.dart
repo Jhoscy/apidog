@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:apidog/domain/entities/pet.dart';
 import 'package:apidog/presentation/providers/api_provider.dart';
 import 'package:apidog/presentation/screens/pet_detail.dart';
+import 'package:apidog/presentation/screens/pet_screen.dart';
+import 'package:apidog/presentation/widgets/alert_dialog.dart';
 import 'package:clay_containers/constants.dart';
 import 'package:clay_containers/widgets/clay_container.dart';
 import 'package:flutter/material.dart';
@@ -13,23 +15,42 @@ class PetItem extends StatelessWidget {
 
   final Pet pet;
   // Modify this to true if you want to see the pet detail in a standalone page
-  final bool standalone = false;
+  final bool standalone = true;
+
+  void managePetDetail(BuildContext context, Pet pet, String id) {
+    final provider = Provider.of<ApiProvider>(context, listen: false);
+    provider.fetchData(id, onSuccess: (pet) {
+      Navigator.push(
+        petScreenScaffoldKey.currentContext!,
+        MaterialPageRoute(
+          builder: (context) => PetDetail(
+            pet: pet,
+            standalone: standalone,
+          ),
+        ),
+      );
+    }, onError: (e) => showPlatformSpecificAlert(petScreenScaffoldKey.currentContext!, message: e.toString()));
+  }
 
   void _onTap(BuildContext context) {
     if (!standalone) {
-      final provider = Provider.of<ApiProvider>(context, listen: false);
-      provider.fetchData(pet.id.toString());
-    }
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => PetDetail(
-          pet: pet,
-          standalone: standalone,
+      // Api Response 200: Valid ID
+      managePetDetail(context, pet, pet.id.toString());
+      // Api Response 400: Invalid ID supplied
+      //managePetDetail(context, pet, 'DDD');
+      // Api Response 404: Pet not found
+      //managePetDetail(context, pet, '1?apidogResponseId=2989402');
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PetDetail(
+            pet: pet,
+            standalone: standalone,
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 
   @override
