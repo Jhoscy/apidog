@@ -1,0 +1,21 @@
+{
+  "code": 0,
+  "data": {
+    "id": "38cffbb9-5b39-4a18-b0ae-9ca2c5e75a0d",
+    "category": {
+      "id": "ad898115-e20a-4b94-a339-19ef27a984ef",
+      "name": "Newfoundland"
+    },
+    "name": "Electa",
+    "photoUrls": [
+      "https://loremflickr.com/640/640/dog?lock=4983623760138307",
+      "https://loremflickr.com/640/640/dog?lock=4623437808840142",
+      "https://loremflickr.com/640/640/dog?lock=7998926371706649"
+    ],
+    "tags": [
+      { "id": "eaf8d2a1-16bc-4e2c-92c7-2bc8225b7080", "name": "frog" },
+      { "id": "2febd1d8-f3f5-480b-a694-4896c844bff3", "name": "sea lion" }
+    ],
+    "status": "sold"
+  }
+}

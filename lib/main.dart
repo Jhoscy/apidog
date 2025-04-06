@@ -18,7 +18,7 @@ final theme = ThemeData(
 
 Future<void> main() async {
   try {
-    const env = String.fromEnvironment('ENV', defaultValue: 'dev');
+    const env = String.fromEnvironment('ENV', defaultValue: 'local');
     print('Debug - Env: $env');
     await dotenv.load(fileName: './environments/.env.$env');
   } catch (e) {
