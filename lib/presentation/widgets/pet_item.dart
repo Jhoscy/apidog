@@ -15,7 +15,7 @@ class PetItem extends StatelessWidget {
 
   final Pet pet;
   // Modify this to true if you want to see the pet detail in a standalone page
-  final bool standalone = true;
+  final bool standalone = false;
 
   void managePetDetail(BuildContext context, Pet pet, String id) {
     final provider = Provider.of<ApiProvider>(context, listen: false);
@@ -36,10 +36,14 @@ class PetItem extends StatelessWidget {
     if (!standalone) {
       // Api Response 200: Valid ID
       managePetDetail(context, pet, pet.id.toString());
+      // Api response 200: with advanced mock for pet available
+      //managePetDetail(context, pet, '1');
       // Api Response 400: Invalid ID supplied
       //managePetDetail(context, pet, 'DDD');
       // Api Response 404: Pet not found
       //managePetDetail(context, pet, '1?apidogResponseId=2989402');
+      // Api Response 404: with advanced mock for pet not found
+      //managePetDetail(context, pet, '4');
     } else {
       Navigator.push(
         context,
