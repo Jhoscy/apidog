@@ -4,6 +4,7 @@ import 'package:apidog/domain/entities/pet.dart';
 import 'package:apidog/domain/usecases/fetch_api_data.dart';
 import 'package:apidog/presentation/providers/pet_provider.dart';
 import 'package:apidog/presentation/screens/pet_screen.dart';
+import 'package:apidog/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -43,7 +44,11 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'ApiDog Demo',
         theme: theme,
-        home: const PetScreen(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const SplashScreen(),
+          '/home': (context) => const PetScreen(),
+        },
       ),
     );
   }
