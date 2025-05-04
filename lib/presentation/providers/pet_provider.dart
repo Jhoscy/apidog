@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:apidog/data/models/api_response.dart';
 import 'package:apidog/domain/entities/pet.dart';
 import 'package:apidog/domain/usecases/fetch_api_data.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class ApiProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fetchPetList({Function? onSuccess, Function? onError}) async {
+  Future<void> fetchPetList({Function? onSuccess, Function? onError, String? filteredByStatus}) async {
     isLoading = true;
     notifyListeners();
 
@@ -55,7 +56,12 @@ class ApiProvider extends ChangeNotifier {
         petList = data.map((pet) => Pet.fromJson(pet)).toList();
         onSuccess?.call(petList);
       } else {
-        final result = await fetchApiData.fetchList('$baseUrl/pet/findByStatus?status=available');
+        ApiResponse<List<Pet>> result;
+        if (filteredByStatus == null) {
+          result = await fetchApiData.fetchList('$baseUrl/pet/list');
+        } else {
+          result = await fetchApiData.fetchList('$baseUrl/pet/findByStatus?status=$filteredByStatus');
+        }
         petList = result.data;
         onSuccess?.call(petList);
       }

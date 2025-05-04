@@ -38,6 +38,10 @@ class _ApiScreenState extends State<PetScreen> {
             onPressed: provider.fetchPetList,
             icon: const Icon(Icons.refresh),
           ),
+          IconButton(
+            onPressed: () => provider.fetchPetList(filteredByStatus: 'available'),
+            icon: const Icon(Icons.filter_list),
+          ),
         ],
       ),
       body: SafeArea(
